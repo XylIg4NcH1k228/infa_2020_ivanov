@@ -7,13 +7,38 @@ pygame.init()
 FPS = 30
 screen = pygame.display.set_mode((400, 400))
 
+def lines(
 
-rect(screen, (0, 0, 255), (0, 200, 400, 90))
-rect(screen, (255, 204, 0), (0, 290, 400, 110))
-rect(screen, (0, 255, 255), (0, 0, 400, 200))
-circle(screen, (255, 255, 0), (340, 60), 30)
-line(screen, (153, 51, 0), (100, 370), (100, 270), 10)
-polygon(screen, (153, 51, 102), [(30, 270), (170, 270), (100, 230), (30, 270)])
+def background(x, y, a, b, c):
+    '''
+    x, y - dimensions of the screen
+    a:b:c - the ratio between the size of the sky, sea and land
+    '''
+    rect(screen, (0, 255, 255), (0, 0, x, y * a / (a + b + c)))
+    rect(screen, (0, 0, 255), (0, y * a / (a + b + c), x, y * (a + b) / (a + b + c)))
+    rect(screen, (255, 204, 0), (0, y * (a + b) / (a + b + c), x, y))
+    
+def sun(x, y, r):
+    '''
+    x, y - coordinates of the centre of the sun
+    r - radius of the sun
+    '''
+    circle(screen, (255, 255, 0), (x, y), r)
+
+def umbrella(x, y, h, w, H):
+    '''
+    x, y - coordinates of the umbrella's stand on the beach
+    h - height of umbrella's stand
+    w - width of umbrella's cover
+    H - height of umbrella
+    '''
+    line(screen, (153, 51, 0), (x, y), (x, y - h), 10)
+    polygon(screen, (153, 51, 102), [(x - w / 2, y - h), (x + w / 2, y - h), (x, y - H), (x - w / 2, y - h)])
+    def lines()
+
+background(400, 400, 3, 1, 1)
+sun(300, 60, 100)
+umbrella(100, 370, 100, 140, 140)
 
 x1 = 30
 x2 = 170
